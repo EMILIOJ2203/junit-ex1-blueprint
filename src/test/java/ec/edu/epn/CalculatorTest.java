@@ -1,6 +1,8 @@
 package ec.edu.epn;
 
 import org.junit.jupiter.api.AfterEach;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -128,7 +130,24 @@ public class CalculatorTest {
     @Test
     void divide_PositiveNumbers_ReturnCorrectQuotient() {
         double result = calculator.divide(10, 4);
-        assertEquals(2.5, result, 0.0001, "10 dividido por 4 debe ser 2.5"); // delta para comparación de doubles
+        assertAll(
+            () -> assertTrue(result>0),
+            () -> assertEquals(2.5, result, 0.0001, "10 dividido por 4 debe ser 2.5")
+        );
+    }
+
+    @Test
+    void divide_TwoPositiveNumbers_ReturnsCorrectQuotient2() {
+        // Arange
+        int a = 10;
+        int b = 2;
+        // Act
+        double result = calculator.divide(a, b);
+        // Assert
+        assertAll(
+            () -> assertTrue(result>0),
+            () -> assertEquals(5.0, result, 0.0001, "10 dividido por 2 debe ser 5.0")
+        );
     }
 
     @Test
@@ -147,5 +166,6 @@ public class CalculatorTest {
 
         assertTrue(illegalArgumentException.getMessage().contains("The divisor cannot be zero"));
     }
+    
 
 }

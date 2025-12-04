@@ -16,4 +16,11 @@ public class StringValidator {
         }
     }
     
+    public boolean isPalindrome(String input){
+        if(input == null){
+            return false;
+        }
+        String reversedText = new StringBuilder(input).reverse().toString();
+        return input.equals(reversedText);
+    }
 }
